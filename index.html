@@ -3,257 +3,1099 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>CleanCity - Waste Management Awareness</title>
+
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:Arial,sans-serif;line-height:1.6;color:#18352a;background:#f6fbf7}
-.navbar{display:flex;justify-content:space-between;align-items:center;padding:16px 7%;background:#176b3a;color:white;flex-wrap:wrap;gap:12px}
-.logo{font-size:24px;font-weight:bold}.nav-links{display:flex;gap:18px;flex-wrap:wrap}
-.nav-links a{color:white;text-decoration:none;padding:6px 8px;border-radius:5px}.nav-links a:hover,.nav-links .active{background:#0e4e2a}
-.hero{min-height:430px;display:flex;align-items:center;padding:60px 9%;background:linear-gradient(120deg,#dff5e5,#bde8ca)}
-.hero h1{font-size:48px;max-width:650px;margin-bottom:15px}.hero p{font-size:20px;max-width:650px;margin-bottom:25px}
-.btn{display:inline-block;background:#176b3a;color:#fff;border:0;padding:12px 22px;border-radius:7px;text-decoration:none;font-size:16px;cursor:pointer}
-.container{width:86%;max-width:1100px;margin:auto}.container h2{text-align:center;margin:35px 0 20px}
-.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.card{background:white;padding:25px;border-radius:12px;box-shadow:0 3px 12px #0001}.card span{font-size:35px}.card h3{margin:8px 0}
-.tips{margin-top:40px;background:#e8f6ec;padding:35px}.tips ul{max-width:700px;margin:auto}.tips li{margin:10px 0}
-.page{padding:45px 0;min-height:70vh}.page h1{margin-bottom:20px}
-.tip-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.tip{background:white;padding:22px;border-left:5px solid #176b3a;border-radius:8px;box-shadow:0 2px 8px #0001}
-.notice{background:#fff5d6;padding:18px;margin-top:25px;border-radius:8px}
-.collection-box{background:white;padding:25px;border-radius:10px;overflow-x:auto}table{width:100%;border-collapse:collapse;margin-top:20px}th,td{border:1px solid #ccc;padding:12px;text-align:left}th{background:#dff2e4}
-.form{max-width:650px;background:white;padding:25px;border-radius:10px;box-shadow:0 3px 12px #0001}.form label{display:block;margin-top:12px;font-weight:bold}.form input,.form select,.form textarea{width:100%;padding:11px;margin-top:5px;border:1px solid #bbb;border-radius:5px;font-size:16px}.form button{margin-top:18px}.form #result{margin-top:15px;color:#176b3a;font-weight:bold}.report-box{max-width:700px;background:white;padding:25px;border-radius:10px;box-shadow:0 3px 12px #0001;margin-top:25px}.report-box input,.report-box textarea{width:100%;padding:11px;margin-top:5px;border:1px solid #bbb;border-radius:5px;font-size:16px}.report-box label{display:block;margin-top:12px;font-weight:bold}.report-box button{margin-top:18px}.photo-preview{max-width:100%;max-height:260px;margin-top:12px;border-radius:8px;display:none;border:1px solid #ddd}
-footer{text-align:center;background:#123d28;color:white;padding:18px}
-@media(max-width:750px){.hero h1{font-size:35px}.cards,.tip-grid{grid-template-columns:1fr}.navbar{justify-content:center}.nav-links{justify-content:center}}
-html { scroll-behavior:smooth; }
-section.page-section { padding-top: 20px; }
-.location-row{display:flex;gap:10px}.location-row input{flex:1}.location-btn{white-space:nowrap}.location-help{font-size:13px;color:#567;margin-top:5px}.report-id{background:#e8f6ec;border:1px solid #b9dfc4;padding:14px;border-radius:8px;margin-top:15px;display:none}.status-box{max-width:700px;background:white;padding:25px;border-radius:10px;box-shadow:0 3px 12px #0001;margin-top:25px}.status-row{display:flex;gap:10px}.status-row input{flex:1;padding:11px;border:1px solid #bbb;border-radius:5px;font-size:16px}.status-result{margin-top:15px}.status-pill{display:inline-block;padding:5px 12px;border-radius:20px;background:#dff2e4;color:#176b3a;font-weight:bold}.map-link{margin-top:8px;display:inline-block}@media(max-width:600px){.location-row,.status-row{flex-direction:column}.location-btn{width:100%}}
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #18352a;
+    background: #f6fbf7;
+}
+
+/* NAVBAR */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 7%;
+    background: #176b3a;
+    color: white;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.nav-links {
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    padding: 6px 8px;
+    border-radius: 5px;
+}
+
+.nav-links a:hover,
+.nav-links .active {
+    background: #0e4e2a;
+}
+
+/* HERO */
+.hero {
+    min-height: 430px;
+    display: flex;
+    align-items: center;
+    padding: 60px 9%;
+    background: linear-gradient(120deg, #d5e5e5, #bde8ca);
+}
+
+.hero h1 {
+    font-size: 48px;
+    max-width: 650px;
+    margin-bottom: 15px;
+}
+
+.hero p {
+    font-size: 20px;
+    max-width: 650px;
+    margin-bottom: 25px;
+}
+
+/* BUTTON */
+.btn {
+    display: inline-block;
+    background: #176b3a;
+    color: #fff;
+    border: 0;
+    padding: 12px 22px;
+    border-radius: 7px;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background: #0e4e2a;
+}
+
+/* CONTAINER */
+.container {
+    width: 86%;
+    max-width: 1100px;
+    margin: auto;
+}
+
+.container h2 {
+    text-align: center;
+    margin: 35px 0 20px;
+}
+
+/* CARDS */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 3px 12px #0001;
+}
+
+.card span {
+    font-size: 35px;
+}
+
+.card h3 {
+    margin: 8px 0;
+}
+
+/* TIPS */
+.tips {
+    margin-top: 40px;
+    background: #e8f6ec;
+    padding: 35px;
+}
+
+.tips ul {
+    max-width: 700px;
+    margin: auto;
+}
+
+.tips li {
+    margin: 10px 0;
+}
+
+/* PAGE */
+.page {
+    padding: 45px 0;
+    min-height: 70vh;
+}
+
+.page h1 {
+    margin-bottom: 20px;
+}
+
+/* TIP GRID */
+.tip-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+.tip {
+    background: white;
+    padding: 22px;
+    border-left: 5px solid #176b3a;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px #0001;
+}
+
+/* NOTICE */
+.notice {
+    background: #f5d6d6;
+    padding: 18px;
+    margin-top: 25px;
+    border-radius: 8px;
+}
+
+/* COLLECTION */
+.collection-box {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th,
+td {
+    border: 1px solid #ccc;
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background: #d2e4e4;
+}
+
+/* FORMS */
+.form {
+    max-width: 650px;
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 3px 12px #0001;
+}
+
+.form label {
+    display: block;
+    margin-top: 12px;
+    font-weight: bold;
+}
+
+.form input,
+.form select,
+.form textarea {
+    width: 100%;
+    padding: 11px;
+    margin-top: 5px;
+    border: 1px solid #bbb;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.form button {
+    margin-top: 18px;
+}
+
+.form #result {
+    margin-top: 15px;
+    color: #176b3a;
+    font-weight: bold;
+}
+
+/* REPORT FORM */
+.report-box {
+    max-width: 700px;
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 3px 12px #0001;
+    margin-top: 25px;
+}
+
+.report-box input,
+.report-box textarea {
+    width: 100%;
+    padding: 11px;
+    margin-top: 5px;
+    border: 1px solid #bbb;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.report-box label {
+    display: block;
+    margin-top: 12px;
+    font-weight: bold;
+}
+
+.report-box button {
+    margin-top: 18px;
+}
+
+.photo-preview {
+    max-width: 100%;
+    max-height: 260px;
+    margin-top: 12px;
+    border-radius: 8px;
+    display: none;
+    border: 1px solid #ddd;
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    background: #123d28;
+    color: white;
+    padding: 18px;
+}
+
+/* MOBILE */
+@media (max-width: 750px) {
+
+    .hero h1 {
+        font-size: 35px;
+    }
+
+    .cards,
+    .tip-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .navbar {
+        justify-content: center;
+    }
+
+    .nav-links {
+        justify-content: center;
+    }
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+section.page-section {
+    padding-top: 20px;
+}
 </style>
 </head>
+
 <body>
+
+<!-- NAVIGATION -->
 <header>
-  <nav class="navbar">
-    <div class="logo">🌱 CleanCity</div>
-    <div class="nav-links">
-      <a href="#home">Home</a>
-      <a href="#waste">Waste Types</a>
-      <a href="#recycling">Recycling Tips</a>
-      <a href="#collection">Collection</a>
-      <a href="#report">Report Garbage</a><a href="#contact">Contact</a>
-    </div>
-  </nav>
+<nav class="navbar">
+
+<div class="logo">
+🌱 CleanCity
+</div>
+
+<div class="nav-links">
+<a href="#home">Home</a>
+<a href="#waste">Waste Types</a>
+<a href="#recycling">Recycling Tips</a>
+<a href="#collection">Collection</a>
+<a href="#report">Report Garbage</a>
+<a href="#contact">Contact</a>
+</div>
+
+</nav>
 </header>
 
-<section id="home" class="page-section"><section class="hero">
-  <div>
-    <h1>Keep Our City Clean & Green</h1>
-    <p>Learn how to separate waste, recycle useful materials and keep your surroundings clean.</p>
-    <a class="btn" href="#waste">Learn About Waste</a>
-  </div>
+
+<!-- HOME -->
+<section id="home" class="page-section">
+
+<section class="hero">
+
+<div>
+
+<h1>Keep Our City Clean & Green</h1>
+
+<p>
+Learn how to separate waste, recycle useful materials
+and keep your surroundings clean.
+</p>
+
+<a class="btn" href="#waste">
+Learn About Waste
+</a>
+
+</div>
+
 </section>
+
 
 <section class="container">
-  <h2>Why Waste Management Matters</h2>
-  <div class="cards">
-    <div class="card"><span>♻️</span><h3>Recycle</h3><p>Reuse and recycle materials whenever possible to reduce waste.</p></div>
-    <div class="card"><span>🗑️</span><h3>Separate</h3><p>Keep wet and dry waste in separate bins for proper processing.</p></div>
-    <div class="card"><span>🌍</span><h3>Protect Nature</h3><p>Good waste management helps protect soil, water, animals and people.</p></div>
-  </div>
+
+<h2>Why Waste Management Matters</h2>
+
+<div class="cards">
+
+<div class="card">
+<span>♻️</span>
+<h3>Recycle</h3>
+<p>
+Reuse and recycle materials whenever possible
+to reduce waste.
+</p>
+</div>
+
+<div class="card">
+<span>🗑️</span>
+<h3>Separate</h3>
+<p>
+Keep wet and dry waste in separate bins
+for proper processing.
+</p>
+</div>
+
+<div class="card">
+<span>🌍</span>
+<h3>Protect Nature</h3>
+<p>
+Good waste management helps protect soil,
+water, animals and people.
+</p>
+</div>
+
+</div>
+
 </section>
 
-<section class="tips">
-  <div class="container">
-    <h2>Simple Daily Steps</h2>
-    <ul>
-      <li>Use separate bins for wet and dry waste.</li>
-      <li>Avoid unnecessary plastic and carry reusable bags.</li>
-      <li>Compost suitable kitchen waste.</li>
-      <li>Never throw waste on roads, drains or open spaces.</li>
-      <li>Give recyclable materials to authorized recyclers.</li>
-    </ul>
-  </div>
-</section></section>
-<section id="waste" class="page-section"><main class="container page">
-<h1>Types of Waste</h1>
-<div class="cards">
-<div class="card"><h2>🟢 Wet Waste</h2><p>Organic waste such as vegetable peels, fruit waste, leftover food and garden waste.</p><b>Examples:</b><p>Food scraps, tea leaves, leaves and flowers.</p></div>
-<div class="card"><h2>🔵 Dry Waste</h2><p>Non-wet materials that can often be reused or recycled.</p><b>Examples:</b><p>Paper, cardboard, metal cans, glass and clean plastic.</p></div>
-<div class="card"><h2>🔴 Hazardous Waste</h2><p>Waste that needs special handling because it can be harmful.</p><b>Examples:</b><p>Batteries, chemical containers, bulbs and certain electronic waste.</p></div>
-</div>
-<div class="notice"><strong>Remember:</strong> Do not mix hazardous waste with normal household waste. Follow local collection rules.</div>
-</main></section>
-<section id="recycling" class="page-section"><main class="container page">
-<h1>♻️ Recycling Tips</h1>
-<div class="tip-grid">
-<div class="tip">01<br><b>Separate Materials</b><p>Keep paper, plastic, glass and metal separate where possible.</p></div>
-<div class="tip">02<br><b>Clean Recyclables</b><p>Empty and rinse containers before placing them for recycling.</p></div>
-<div class="tip">03<br><b>Reuse First</b><p>Reuse bags, containers and other useful items before discarding them.</p></div>
-<div class="tip">04<br><b>Reduce Plastic</b><p>Choose reusable bottles, bags and food containers.</p></div>
-<div class="tip">05<br><b>Compost</b><p>Compost suitable kitchen and garden waste instead of sending it to landfill.</p></div>
-<div class="tip">06<br><b>E-Waste</b><p>Give old electronics and batteries to authorized collection points.</p></div>
-</div>
-</main></section>
-<section id="collection" class="page-section"><main class="container page">
-<h1>🗑️ Waste Collection Information</h1>
-<div class="collection-box">
-<h2>Household Waste</h2>
-<p>Keep wet and dry waste separated and place the bins outside according to your local collection schedule.</p>
-<table>
-<tr><th>Waste</th><th>Suggested Bin</th><th>Handling</th></tr>
-<tr><td>Wet / Organic</td><td>Green</td><td>Composting / organic processing</td></tr>
-<tr><td>Dry / Recyclable</td><td>Blue</td><td>Recycling / material recovery</td></tr>
-<tr><td>Hazardous / E-waste</td><td>Separate</td><td>Authorized collection</td></tr>
-</table>
-</div>
-<div class="notice">Collection schedules can differ by area. Check your local municipal authority for the exact day and time.</div>
-</main></section>
-<section id="report" class="page-section"><main class="container page">
-<h1>📷 Report Garbage</h1>
-<p>Take a photo of garbage and submit the report. The photo will be saved to Google Drive and the details will be added to the project Google Sheet.</p>
-<div class="report-box">
-<form id="garbageForm">
-<label>Name</label>
-<input type="text" id="garbageName" placeholder="Enter your name" required>
-<label>Location</label>
-<div class="location-row"><input type="text" id="garbageLocation" placeholder="Enter garbage location" required><button type="button" class="btn location-btn" id="getLocationBtn">📍 Use My Location</button></div><p class="location-help">Allow location access to automatically add your current location.</p><input type="hidden" id="garbageLatitude"><input type="hidden" id="garbageLongitude">
-<label>Description</label>
-<textarea id="garbageDescription" rows="4" placeholder="Describe the garbage problem" required></textarea>
-<label>Take / Select Photo</label>
-<input type="file" id="garbagePhoto" accept="image/*" capture="environment" required>
-<img id="photoPreview" class="photo-preview" alt="Photo preview">
-<button class="btn" type="submit" id="garbageSubmit">Submit Garbage Report</button>
-<p id="garbageResult"></p><div id="reportIdBox" class="report-id"></div>
-</form>
-</div>
-<div class="status-box"><h2>🔎 Track Your Report</h2><p>Enter your Report ID to check the status saved on this device.</p><div class="status-row"><input type="text" id="trackReportId" placeholder="Example: CC-20261001-1234"><button class="btn" type="button" id="trackReportBtn">Track Report</button></div><div id="trackResult" class="status-result"></div></div>
-</main></section>
-<section id="contact" class="page-section"><main class="container page">
-<h1>📩 Complaint / Contact Form</h1>
-<p>Use this form to send a waste-related complaint or suggestion.</p>
-<form id="contactForm" class="form">
-<label>Name</label><input type="text" id="name" placeholder="Enter your name" required>
-<label>Email</label><input type="email" id="email" placeholder="Enter your email" required>
-<label>Type</label><select id="type"><option>Complaint</option><option>Suggestion</option><option>General Enquiry</option></select>
-<label>Message</label><textarea id="message" rows="6" placeholder="Write your message" required></textarea>
-<button class="btn" type="submit">Submit</button>
-<p id="result"></p>
-</form>
-</main></section>
 
-<footer>© 2026 CleanCity | CEP IT Project</footer>
+<section class="tips">
+
+<div class="container">
+
+<h2>Simple Daily Steps</h2>
+
+<ul>
+<li>Use separate bins for wet and dry waste.</li>
+<li>Avoid unnecessary plastic and carry reusable bags.</li>
+<li>Compost suitable kitchen waste.</li>
+<li>Never throw waste on roads, drains or open spaces.</li>
+<li>Give recyclable materials to authorized recyclers.</li>
+</ul>
+
+</div>
+
+</section>
+
+</section>
+
+
+<!-- WASTE TYPES -->
+<section id="waste" class="page-section">
+
+<main class="container page">
+
+<h1>Types of Waste</h1>
+
+<div class="cards">
+
+<div class="card">
+
+<h2>🟢 Wet Waste</h2>
+
+<p>
+Organic waste such as vegetable peels, fruit waste,
+leftover food and garden waste.
+</p>
+
+<b>Examples:</b>
+
+<p>
+Food scraps, tea leaves, leaves and flowers.
+</p>
+
+</div>
+
+
+<div class="card">
+
+<h2>🔵 Dry Waste</h2>
+
+<p>
+Non-wet materials that can often be reused or recycled.
+</p>
+
+<b>Examples:</b>
+
+<p>
+Paper, cardboard, metal cans, glass and clean plastic.
+</p>
+
+</div>
+
+
+<div class="card">
+
+<h2>🔴 Hazardous Waste</h2>
+
+<p>
+Waste that needs special handling because it can be harmful.
+</p>
+
+<b>Examples:</b>
+
+<p>
+Batteries, chemical containers, bulbs and certain
+electronic waste.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="notice">
+
+<strong>Remember:</strong>
+
+Do not mix hazardous waste with normal household waste.
+Follow local collection rules.
+
+</div>
+
+</main>
+
+</section>
+
+
+<!-- RECYCLING -->
+<section id="recycling" class="page-section">
+
+<main class="container page">
+
+<h1>♻️ Recycling Tips</h1>
+
+<div class="tip-grid">
+
+<div class="tip">
+01<br>
+<b>Separate Materials</b>
+<p>
+Keep paper, plastic, glass and metal separate where possible.
+</p>
+</div>
+
+<div class="tip">
+02<br>
+<b>Clean Recyclables</b>
+<p>
+Empty and rinse containers before placing them for recycling.
+</p>
+</div>
+
+<div class="tip">
+03<br>
+<b>Reuse First</b>
+<p>
+Reuse bags, containers and other useful items before discarding them.
+</p>
+</div>
+
+<div class="tip">
+04<br>
+<b>Reduce Plastic</b>
+<p>
+Choose reusable bottles, bags and food containers.
+</p>
+</div>
+
+<div class="tip">
+05<br>
+<b>Compost</b>
+<p>
+Compost suitable kitchen and garden waste instead of
+sending it to landfill.
+</p>
+</div>
+
+<div class="tip">
+06<br>
+<b>E-Waste</b>
+<p>
+Give old electronics and batteries to authorized collection points.
+</p>
+</div>
+
+</div>
+
+</main>
+
+</section>
+
+
+<!-- COLLECTION -->
+<section id="collection" class="page-section">
+
+<main class="container page">
+
+<h1>🗑️ Waste Collection Information</h1>
+
+<div class="collection-box">
+
+<h2>Household Waste</h2>
+
+<p>
+Keep wet and dry waste separated and place the bins outside
+according to your local collection schedule.
+</p>
+
+<table>
+
+<tr>
+<th>Waste</th>
+<th>Suggested Bin</th>
+<th>Handling</th>
+</tr>
+
+<tr>
+<td>Wet / Organic</td>
+<td>Green</td>
+<td>Composting / organic processing</td>
+</tr>
+
+<tr>
+<td>Dry / Recyclable</td>
+<td>Blue</td>
+<td>Recycling / material recovery</td>
+</tr>
+
+<tr>
+<td>Hazardous / E-waste</td>
+<td>Separate</td>
+<td>Authorized collection</td>
+</tr>
+
+</table>
+
+</div>
+
+
+<div class="notice">
+
+Collection schedules can differ by area.
+Check your local municipal authority for the exact day and time.
+
+</div>
+
+</main>
+
+</section>
+
+
+<!-- REPORT GARBAGE -->
+<section id="report" class="page-section">
+
+<main class="container page">
+
+<h1>📷 Report Garbage</h1>
+
+<p>
+Take a photo of garbage and submit the report.
+The photo will be saved to Google Drive and the details
+will be added to the project Google Sheet.
+</p>
+
+
+<div class="report-box">
+
+<form id="garbageForm">
+
+<label>Name</label>
+
+<input
+type="text"
+id="garbageName"
+placeholder="Enter your name"
+required
+>
+
+
+<label>Location</label>
+
+<input
+type="text"
+id="garbageLocation"
+placeholder="Enter garbage location"
+required
+>
+
+
+<label>Description</label>
+
+<textarea
+id="garbageDescription"
+rows="4"
+placeholder="Describe the garbage problem"
+required
+></textarea>
+
+
+<label>Take / Select Photo</label>
+
+<input
+type="file"
+id="garbagePhoto"
+accept="image/*"
+capture="environment"
+required
+>
+
+
+<img
+id="photoPreview"
+class="photo-preview"
+alt="Photo preview"
+>
+
+
+<button
+class="btn"
+type="submit"
+id="garbageSubmit"
+>
+Submit Garbage Report
+</button>
+
+
+<p id="garbageResult"></p>
+
+</form>
+
+</div>
+
+</main>
+
+</section>
+
+
+<!-- CONTACT -->
+<section id="contact" class="page-section">
+
+<main class="container page">
+
+<h1>📩 Complaint / Contact Form</h1>
+
+<p>
+Use this form to send a waste-related complaint or suggestion.
+</p>
+
+
+<form id="contactForm" class="form">
+
+<label>Name</label>
+
+<input
+type="text"
+id="name"
+placeholder="Enter your name"
+required
+>
+
+
+<label>Email</label>
+
+<input
+type="email"
+id="email"
+placeholder="Enter your email"
+required
+>
+
+
+<label>Type</label>
+
+<select id="type">
+
+<option>Complaint</option>
+<option>Suggestion</option>
+<option>General Enquiry</option>
+
+</select>
+
+
+<label>Message</label>
+
+<textarea
+id="message"
+rows="6"
+placeholder="Write your message"
+required
+></textarea>
+
+
+<button class="btn" type="submit">
+Submit
+</button>
+
+<p id="result"></p>
+
+</form>
+
+</main>
+
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+
+© 2026 CleanCity | CEP IT Project
+
+</footer>
+
 
 <script>
-// Google Apps Script Web App URL
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyD7Ena917y_rOAjWJCC2ghORn38pY6nv7jsDMZj57cOMeJUv83FIVpYh46_fFpMc1Nug/exec";
 
-// Existing contact form demo
-const contactForm = document.getElementById("contactForm");
+/* =========================================
+   GOOGLE APPS SCRIPT URL
+========================================= */
+
+const GOOGLESCRIPTURL =
+"https://script.google.com/macros/s/AKfycbyD7Ena917y_r__OAjWJCC2ghORn38pY6nv7jsDMZj57cOMeJUv83FIVpYh46_fFpMc1Nug/exec";
+
+
+/* =========================================
+   CONTACT FORM
+========================================= */
+
+const contactForm =
+document.getElementById("contactForm");
+
 if (contactForm) {
-  contactForm.addEventListener("submit", function(e) {
-    e.preventDefault();
-    const name = document.getElementById("name").value.trim();
-    document.getElementById("result").textContent =
-      "Thank you, " + name + "! Your message has been recorded for this demo.";
-    this.reset();
-  });
+
+contactForm.addEventListener("submit", function(e) {
+
+e.preventDefault();
+
+const name =
+document.getElementById("name").value.trim();
+
+document.getElementById("result").textContent =
+"Thank you, " + name +
+"! Your message has been recorded.";
+
+contactForm.reset();
+
+});
+
 }
 
-// Show selected/taken photo
-const photoInput = document.getElementById("garbagePhoto");
-const photoPreview = document.getElementById("photoPreview");
+
+/* =========================================
+   PHOTO PREVIEW
+========================================= */
+
+const photoInput =
+document.getElementById("garbagePhoto");
+
+const photoPreview =
+document.getElementById("photoPreview");
+
+
 if (photoInput) {
-  photoInput.addEventListener("change", function() {
-    const file = this.files[0];
-    if (!file) return;
-    photoPreview.src = URL.createObjectURL(file);
-    photoPreview.style.display = "block";
-  });
+
+photoInput.addEventListener("change", function() {
+
+const file = this.files[0];
+
+if (!file) {
+return;
 }
 
-// Resize/compress photo before sending to Google Apps Script
+photoPreview.src =
+URL.createObjectURL(file);
+
+photoPreview.style.display =
+"block";
+
+});
+
+}
+
+
+/* =========================================
+   COMPRESS IMAGE
+========================================= */
+
 function compressImage(file) {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onload = function(event) {
-      const img = new Image();
-      img.onload = function() {
-        const maxSize = 1200;
-        let w = img.width;
-        let h = img.height;
-        if (w > h && w > maxSize) { h = Math.round(h * maxSize / w); w = maxSize; }
-        else if (h >= w && h > maxSize) { w = Math.round(w * maxSize / h); h = maxSize; }
-        const canvas = document.createElement("canvas");
-        canvas.width = w;
-        canvas.height = h;
-        canvas.getContext("2d").drawImage(img, 0, 0, w, h);
-        resolve(canvas.toDataURL("image/jpeg", 0.75));
-      };
-      img.onerror = reject;
-      img.src = event.target.result;
-    };
-    reader.onerror = reject;
-    reader.readAsDataURL(file);
-  });
+
+return new Promise((resolve, reject) => {
+
+const reader =
+new FileReader();
+
+reader.onload =
+function(event) {
+
+const img =
+new Image();
+
+img.onload =
+function() {
+
+const maxSize = 1200;
+
+let w = img.width;
+let h = img.height;
+
+
+if (w > h && w > maxSize) {
+
+h = Math.round(
+h * maxSize / w
+);
+
+w = maxSize;
+
 }
 
-const getLocationBtn=document.getElementById("getLocationBtn"); if(getLocationBtn){getLocationBtn.addEventListener("click",function(){const li=document.getElementById("garbageLocation"),la=document.getElementById("garbageLatitude"),lo=document.getElementById("garbageLongitude"); if(!navigator.geolocation){li.value="Location services are not supported";return;} getLocationBtn.disabled=true;getLocationBtn.textContent="📍 Getting...";navigator.geolocation.getCurrentPosition(function(p){la.value=p.coords.latitude;lo.value=p.coords.longitude;li.value="Current location ("+p.coords.latitude.toFixed(6)+", "+p.coords.longitude.toFixed(6)+")";getLocationBtn.disabled=false;getLocationBtn.textContent="📍 Location Added";},function(){getLocationBtn.disabled=false;getLocationBtn.textContent="📍 Use My Location";document.getElementById("garbageResult").textContent="Location permission was not allowed. Please enter the location manually.";});});}
-function generateReportId(){const d=new Date();const date=d.getFullYear().toString()+String(d.getMonth()+1).padStart(2,"0")+String(d.getDate()).padStart(2,"0");return "CC-"+date+"-"+Math.floor(1000+Math.random()*9000);}
-function saveLocalReport(r){try{const x=JSON.parse(localStorage.getItem("cleancityReports")||"{}");x[r.id]=r;localStorage.setItem("cleancityReports",JSON.stringify(x));}catch(e){}}
-const trackReportBtn=document.getElementById("trackReportBtn");if(trackReportBtn){trackReportBtn.addEventListener("click",function(){const id=document.getElementById("trackReportId").value.trim().toUpperCase();const r=JSON.parse(localStorage.getItem("cleancityReports")||"{}")[id],box=document.getElementById("trackResult");if(!r){box.innerHTML="❌ Report not found on this device.";return;}let map=r.lat&&r.lng?'<br><a class="map-link" target="_blank" href="https://www.google.com/maps?q='+r.lat+','+r.lng+'">🗺️ Open location in Google Maps</a>':'';box.innerHTML="<b>Report ID:</b> "+r.id+"<br><b>Location:</b> "+r.location+"<br><b>Submitted:</b> "+r.date+"<br><b>Status:</b> <span class='status-pill'>"+r.status+"</span>"+map;});}
-const garbageForm = document.getElementById("garbageForm");
+else if (h >= w && h > maxSize) {
+
+w = Math.round(
+w * maxSize / h
+);
+
+h = maxSize;
+
+}
+
+
+const canvas =
+document.createElement("canvas");
+
+canvas.width = w;
+canvas.height = h;
+
+
+const ctx =
+canvas.getContext("2d");
+
+ctx.drawImage(
+img,
+0,
+0,
+w,
+h
+);
+
+
+resolve(
+canvas.toDataURL(
+"image/jpeg",
+0.75
+)
+);
+
+};
+
+
+img.onerror = reject;
+
+img.src =
+event.target.result;
+
+};
+
+
+reader.onerror = reject;
+
+reader.readAsDataURL(file);
+
+});
+
+}
+
+
+/* =========================================
+   GARBAGE REPORT FORM
+========================================= */
+
+const garbageForm =
+document.getElementById("garbageForm");
+
+
 if (garbageForm) {
-  garbageForm.addEventListener("submit", async function(e) {
-    e.preventDefault();
-    const result = document.getElementById("garbageResult");
-    const button = document.getElementById("garbageSubmit");
-    const file = photoInput.files[0];
-    if (!file) {
-      result.textContent = "Please take or select a photo.";
-      return;
-    }
 
-    button.disabled = true;
-    button.textContent = "Submitting...";
-    result.textContent = "Uploading photo and saving report...";
+garbageForm.addEventListener(
+"submit",
+async function(e) {
 
-    try {
-      const photo = await compressImage(file);
-      const reportId = generateReportId();
-      const reportDate = new Date().toLocaleString();
-      const latitude = document.getElementById("garbageLatitude").value;
-      const longitude = document.getElementById("garbageLongitude").value;
-      const data = {
-        reportId: reportId,
-        name: document.getElementById("garbageName").value.trim(),
-        location: document.getElementById("garbageLocation").value.trim(),
-        latitude: latitude,
-        longitude: longitude,
-        status: "Submitted",
-        description: document.getElementById("garbageDescription").value.trim(),
-        photo: photo,
-        photoType: "image/jpeg"
-      };
+e.preventDefault();
 
-      // no-cors avoids browser CORS blocking for Google Apps Script.
-      // The Apps Script still receives and saves the POST body.
-      await fetch(GOOGLE_SCRIPT_URL, {
-        method: "POST",
-        mode: "no-cors",
-        headers: { "Content-Type": "text/plain;charset=utf-8" },
-        body: JSON.stringify(data)
-      });
 
-      result.textContent = "✅ Report submitted successfully!"; document.getElementById("reportIdBox").style.display="block"; document.getElementById("reportIdBox").innerHTML="<b>🆔 Your Report ID: "+reportId+"</b><br>Save this ID to track your report later.<br><span class="status-pill">Submitted</span>"; saveLocalReport({id:reportId,location:data.location,lat:latitude,lng:longitude,date:reportDate,status:"Submitted"});
-      garbageForm.reset();
-      photoPreview.style.display = "none";
-      photoPreview.removeAttribute("src");
-    } catch (error) {
-      console.error(error);
-      result.textContent = "❌ Submission failed. Please check your internet connection and try again.";
-    } finally {
-      button.disabled = false;
-      button.textContent = "Submit Garbage Report";
-    }
-  });
+const result =
+document.getElementById("garbageResult");
+
+const button =
+document.getElementById("garbageSubmit");
+
+const file =
+photoInput.files[0];
+
+
+if (!file) {
+
+result.textContent =
+"Please take or select a photo.";
+
+return;
+
 }
+
+
+button.disabled = true;
+
+button.textContent =
+"Submitting...";
+
+result.textContent =
+"Uploading photo and saving report...";
+
+
+try {
+
+
+/* Compress photo */
+
+const photo =
+await compressImage(file);
+
+
+/* Prepare data */
+
+const data = {
+
+name:
+document.getElementById(
+"garbageName"
+).value.trim(),
+
+location:
+document.getElementById(
+"garbageLocation"
+).value.trim(),
+
+description:
+document.getElementById(
+"garbageDescription"
+).value.trim(),
+
+photo:
+photo,
+
+photoType:
+"image/jpeg"
+
+};
+
+
+/* Send data to Google Apps Script */
+
+await fetch(
+GOOGLESCRIPTURL,
+{
+method: "POST",
+
+mode: "no-cors",
+
+headers: {
+"Content-Type":
+"text/plain;charset=utf-8"
+},
+
+body:
+JSON.stringify(data)
+
+}
+);
+
+
+/* Success message */
+
+result.textContent =
+"✅ Report submitted successfully! " +
+"Photo and details were sent to Google Drive/Sheets.";
+
+
+/* Reset form */
+
+garbageForm.reset();
+
+photoPreview.style.display =
+"none";
+
+photoPreview.removeAttribute(
+"src"
+);
+
+
+}
+
+catch (error) {
+
+console.error(error);
+
+result.textContent =
+"❌ Submission failed. " +
+"Please check your internet connection and try again.";
+
+}
+
+
+finally {
+
+button.disabled = false;
+
+button.textContent =
+"Submit Garbage Report";
+
+}
+
+});
+
+}
+
 </script>
+
 </body>
-                                                                 </html>
+</html>
