@@ -25,6 +25,7 @@ footer{text-align:center;background:#123d28;color:white;padding:18px}
 @media(max-width:750px){.hero h1{font-size:35px}.cards,.tip-grid{grid-template-columns:1fr}.navbar{justify-content:center}.nav-links{justify-content:center}}
 html { scroll-behavior:smooth; }
 section.page-section { padding-top: 20px; }
+.location-row{display:flex;gap:10px}.location-row input{flex:1}.location-btn{white-space:nowrap}.location-help{font-size:13px;color:#567;margin-top:5px}.report-id{background:#e8f6ec;border:1px solid #b9dfc4;padding:14px;border-radius:8px;margin-top:15px;display:none}.status-box{max-width:700px;background:white;padding:25px;border-radius:10px;box-shadow:0 3px 12px #0001;margin-top:25px}.status-row{display:flex;gap:10px}.status-row input{flex:1;padding:11px;border:1px solid #bbb;border-radius:5px;font-size:16px}.status-result{margin-top:15px}.status-pill{display:inline-block;padding:5px 12px;border-radius:20px;background:#dff2e4;color:#176b3a;font-weight:bold}.map-link{margin-top:8px;display:inline-block}@media(max-width:600px){.location-row,.status-row{flex-direction:column}.location-btn{width:100%}}
 </style>
 </head>
 <body>
@@ -112,16 +113,17 @@ section.page-section { padding-top: 20px; }
 <label>Name</label>
 <input type="text" id="garbageName" placeholder="Enter your name" required>
 <label>Location</label>
-<input type="text" id="garbageLocation" placeholder="Enter garbage location" required>
+<div class="location-row"><input type="text" id="garbageLocation" placeholder="Enter garbage location" required><button type="button" class="btn location-btn" id="getLocationBtn">📍 Use My Location</button></div><p class="location-help">Allow location access to automatically add your current location.</p><input type="hidden" id="garbageLatitude"><input type="hidden" id="garbageLongitude">
 <label>Description</label>
 <textarea id="garbageDescription" rows="4" placeholder="Describe the garbage problem" required></textarea>
 <label>Take / Select Photo</label>
 <input type="file" id="garbagePhoto" accept="image/*" capture="environment" required>
 <img id="photoPreview" class="photo-preview" alt="Photo preview">
 <button class="btn" type="submit" id="garbageSubmit">Submit Garbage Report</button>
-<p id="garbageResult"></p>
+<p id="garbageResult"></p><div id="reportIdBox" class="report-id"></div>
 </form>
 </div>
+<div class="status-box"><h2>🔎 Track Your Report</h2><p>Enter your Report ID to check the status saved on this device.</p><div class="status-row"><input type="text" id="trackReportId" placeholder="Example: CC-20261001-1234"><button class="btn" type="button" id="trackReportBtn">Track Report</button></div><div id="trackResult" class="status-result"></div></div>
 </main></section>
 <section id="contact" class="page-section"><main class="container page">
 <h1>📩 Complaint / Contact Form</h1>
@@ -192,6 +194,10 @@ function compressImage(file) {
   });
 }
 
+const getLocationBtn=document.getElementById("getLocationBtn"); if(getLocationBtn){getLocationBtn.addEventListener("click",function(){const li=document.getElementById("garbageLocation"),la=document.getElementById("garbageLatitude"),lo=document.getElementById("garbageLongitude"); if(!navigator.geolocation){li.value="Location services are not supported";return;} getLocationBtn.disabled=true;getLocationBtn.textContent="📍 Getting...";navigator.geolocation.getCurrentPosition(function(p){la.value=p.coords.latitude;lo.value=p.coords.longitude;li.value="Current location ("+p.coords.latitude.toFixed(6)+", "+p.coords.longitude.toFixed(6)+")";getLocationBtn.disabled=false;getLocationBtn.textContent="📍 Location Added";},function(){getLocationBtn.disabled=false;getLocationBtn.textContent="📍 Use My Location";document.getElementById("garbageResult").textContent="Location permission was not allowed. Please enter the location manually.";});});}
+function generateReportId(){const d=new Date();const date=d.getFullYear().toString()+String(d.getMonth()+1).padStart(2,"0")+String(d.getDate()).padStart(2,"0");return "CC-"+date+"-"+Math.floor(1000+Math.random()*9000);}
+function saveLocalReport(r){try{const x=JSON.parse(localStorage.getItem("cleancityReports")||"{}");x[r.id]=r;localStorage.setItem("cleancityReports",JSON.stringify(x));}catch(e){}}
+const trackReportBtn=document.getElementById("trackReportBtn");if(trackReportBtn){trackReportBtn.addEventListener("click",function(){const id=document.getElementById("trackReportId").value.trim().toUpperCase();const r=JSON.parse(localStorage.getItem("cleancityReports")||"{}")[id],box=document.getElementById("trackResult");if(!r){box.innerHTML="❌ Report not found on this device.";return;}let map=r.lat&&r.lng?'<br><a class="map-link" target="_blank" href="https://www.google.com/maps?q='+r.lat+','+r.lng+'">🗺️ Open location in Google Maps</a>':'';box.innerHTML="<b>Report ID:</b> "+r.id+"<br><b>Location:</b> "+r.location+"<br><b>Submitted:</b> "+r.date+"<br><b>Status:</b> <span class='status-pill'>"+r.status+"</span>"+map;});}
 const garbageForm = document.getElementById("garbageForm");
 if (garbageForm) {
   garbageForm.addEventListener("submit", async function(e) {
@@ -210,9 +216,17 @@ if (garbageForm) {
 
     try {
       const photo = await compressImage(file);
+      const reportId = generateReportId();
+      const reportDate = new Date().toLocaleString();
+      const latitude = document.getElementById("garbageLatitude").value;
+      const longitude = document.getElementById("garbageLongitude").value;
       const data = {
+        reportId: reportId,
         name: document.getElementById("garbageName").value.trim(),
         location: document.getElementById("garbageLocation").value.trim(),
+        latitude: latitude,
+        longitude: longitude,
+        status: "Submitted",
         description: document.getElementById("garbageDescription").value.trim(),
         photo: photo,
         photoType: "image/jpeg"
@@ -227,7 +241,7 @@ if (garbageForm) {
         body: JSON.stringify(data)
       });
 
-      result.textContent = "✅ Report submitted successfully! Photo and details were sent to Google Drive/Sheets.";
+      result.textContent = "✅ Report submitted successfully!"; document.getElementById("reportIdBox").style.display="block"; document.getElementById("reportIdBox").innerHTML="<b>🆔 Your Report ID: "+reportId+"</b><br>Save this ID to track your report later.<br><span class="status-pill">Submitted</span>"; saveLocalReport({id:reportId,location:data.location,lat:latitude,lng:longitude,date:reportDate,status:"Submitted"});
       garbageForm.reset();
       photoPreview.style.display = "none";
       photoPreview.removeAttribute("src");
